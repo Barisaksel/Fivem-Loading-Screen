@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>x-LoadingScreen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@1,200;1,400&display=swap" rel="stylesheet">
+</head>
+
+<body style="background-color: rgb(49, 49, 49); overflow: hidden;">
+   
+    <audio id="oynatici1" autoplay src="sound/music.mp3" ></audio>
+
+    <div class="info">
+        <div class="transbox">
+            <h1>Güncelleme Notları</h1>
+            <h3>Test Eklendi.</h3>
+            <h3>Test2 Eklendi.</h3>
+            <h3>Test3 Eklendi.</h3>
+            <h3>Test4 Eklendi.</h3>
+            <h3>Test5 Eklendi.</h3>
+            <marquee>www.xrp.com</marquee>
+
+        </div>
+    </div>
+
+<div class="logo">
+    <img src="img/logo.png">
+ </div>  
+
+<div class="sidepanel" id="particles-js" style="background-color: black;">
+</div>
+
+<div class="arkaplan">
+    <img src="img/background.jpg" style="max-width: fit-content;">
+</div>
+
+<div class="kayanyazi">
+    <marquee>Music :  Smokin' U Out</marquee>
+</div>
+
+<script type="text/javascript" src="js/particles.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script>
+    const player=document.querySelector("#oynatici1");
+    window.onload=function(){
+
+        //sure değişkeni yoksa 0 varsa olan süreden başlayacak
+        let sure=0;
+        if(localStorage.getItem('sure'))
+        {
+            sure=localStorage.getItem('sure'); 
+        }
+
+        player.play();
+        player.currentTime=sure;
+    }
+    
+    document.onkeydown = function(e){
+        e = e || window.event;
+        var key = e.which || e.keyCode;
+        if(key===88){
+            player.play();
+        }
+    };
+
+    document.onkeyup = function(e){
+        e = e || window.event;
+        var key = e.which || e.keyCode;
+        if(key===32){
+            player.pause();
+        }
+
+    };
+
+    window.onbeforeunload =function(){
+        
+        sure=player.currentTime;
+        localStorage.setItem('sure',sure);
+    }
+</script>
+</body>
+</html>
